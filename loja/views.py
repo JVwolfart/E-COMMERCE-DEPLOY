@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from loja.models import Avaliacao, Carrinho, Categoria, DadosUser, FormaPagamento, ItemCarrinho, ItemPedido, Livro, Pedido, StatusPedido
 from django.core.paginator import Paginator
 from django.db.models import Q, Sum, Avg
@@ -35,7 +35,13 @@ def index(request):
 
 def produto(request, id):
     categorias = Categoria.objects.all().order_by('categoria')
+    livro_existe = Livro.objects.all().filter(id=id).exists()
+    if not livro_existe:
+        messages.add_message(request, messages.ERROR, 'Livro não existe')
+        return redirect('produtos')
     livro = Livro.objects.get(id=id)
+    
+    #livro = get_object_or_404(Livro, id=id)
     user = request.user
     if user.is_authenticated:
         carrinho_user = Carrinho.objects.all().filter(
