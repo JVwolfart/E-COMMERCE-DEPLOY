@@ -76,9 +76,9 @@ def pesquisa_termo(request):
         livros = Livro.objects.all().filter(
             ativo=True
         ).order_by('titulo')
-        paginator = Paginator(produtos, 5)
+        paginator = Paginator(livros, 5)
         page = request.GET.get('p')
-        produtos = paginator.get_page(page)
+        livros = paginator.get_page(page)
         user = request.user
         if user.is_authenticated:
             carrinho_user = Carrinho.objects.all().filter(
