@@ -38,4 +38,4 @@ http://jvitorwolfart.pinheirasc.com/index.php/2022/07/18/projeto-e-commerce/
 
 Caso queira ver o deploy deste projeto acesse o link abaixo:
 
-https://abc-livros.herokuapp.com/
+https://livros.pinheirasc.com/
